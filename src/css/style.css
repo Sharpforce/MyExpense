@@ -1,0 +1,24 @@
+body {
+  padding-top: 100px;
+  padding-bottom: 0px;
+  background-image: url(/img/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 100px;
+  height: 100px;
+  padding-top: 0;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus .btn-primary:disabled, .btn-primary:disabled:hover {
+  background-color: #053959;
+  border-color: #053959;
+}
+
+.alert-block {
+	margin-bottom : 0;
+}
