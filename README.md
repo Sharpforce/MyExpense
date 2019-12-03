@@ -1,4 +1,4 @@
-# MyExpense Web Application
+# MyExpense Vulnerable Web Application
 
 ## Détails du challenge
 * **Difficulté :** Easy
