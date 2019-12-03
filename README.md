@@ -32,13 +32,16 @@ A vos claviers !
 ```
 ## Téléchargement de la machine virtuelle
 Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
-[MyExpense Virtual Machine](http://www.mediafire.com/file/rzg9dxt14tm4ozs/MyExpense_%28192.168.56.140%29.ova)
+[MyExpense Virtual Machine](http://www.mediafire.com/file/mjctimo9y0nsuqf/MyExpense_Vunerable_Web_Application.ova/file)
 
 
 
 ## Réinitialiser la base de données de l'application
-Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://myexpense.fbi.com/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
-![Création BDD](https://github.com/Sharpforce/Web/blob/master/.images/04.%20Challenges/01.%20MyExpense_config_db_success.png)
+Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://<ip>/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
+
+![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+
+
 
 ## Installation à partir des sources
 
@@ -57,13 +60,13 @@ Puis :
 ```
 
 ### Installation de git et récupération du code source
-Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP : [MyExpense.zip](https://github.com/Sharpforce/Web/archive/MyExpense-master.zip).
+Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP.
 
 #### Par l'utilitaire Git
 ```
 # apt-get install git
 # cd /tmp
-# git clone -b MyExpense-master https://github.com/Sharpforce/Web-Security.git
+# git clone https://github.com/Sharpforce/MyExpense.git
 # rm -rf /tmp/Web-Security/.git
 ```
 
@@ -81,10 +84,10 @@ Il sera peut être nécessaire d'installer le paquet **unzip** afin d'extraire l
 Puis extraire l'archive :
 ```
 # cd /tmp
-# wget https://github.com/Sharpforce/Web-Security/archive/MyExpense-master.zip
-# unzip MyExpense-master.zip
-# mv Web-Security-MyExpense-master/* /var/www/html
-# mv Web-Security-MyExpense-master/.htaccess /var/www/html/.htaccess
+# wget https://github.com/Sharpforce/MyExpense/archive/master.zip
+# unzip master.zip
+# mv master/* /var/www/html
+# mv master/.htaccess /var/www/html/.htaccess
 ```
 
 ### Configuration Apache2
@@ -141,27 +144,17 @@ Puis modifier les informations de connexion :
 ```
 
 ### Création de la base de données
-La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://192.168.56.141/config/setup.php_ :
-![Configuration BDD](https://github.com/Sharpforce/Web/blob/master/.images/04.%20Challenges/01.%20MyExpense_config_db.png)
+La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ :
+
+![](https://github.com/Sharpforce/MyExpense/blob/master/images/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
 Vérifier les informations puis cliquer sur **Create/Restore the database** :
-![Création BDD](https://github.com/Sharpforce/Web/blob/master/.images/04.%20Challenges/01.%20MyExpense_config_db_success.png)
+![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 ### Installation des scripts employés
 L'application doit être maintenant installée et fonctionnelle. Afin de pouvoir compléter le challenge proposé et de rendre l'expérience un peu plus immersif, il est nécessaire d'installer les scripts de simulation d'action des employés.
 
-Tout d'abord, renseigner le fichier hosts (_/etc/hosts_) sur la machine virtuelle **ET** sur votre machine d'attaque comme indiqué ci-dessous :
-```
-# vim /etc/hosts
-```
-
-Ici _192.168.56.100_ est un exemple, il faut insérer l'adresse IP de la machine virtulle qui héberge l'application :
-```
-192.168.56.100  myexpense.fbi.com
-```
-**Note :** Ne pas oublier de modifier le fichier hosts également sous votre machine Windows par exemple (_C:\Windows\System32\drivers\etc\hosts_)
-
-Puis déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans un autre répertoire, par exemple _/opt_ :
+Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans un autre répertoire, par exemple _/opt_ :
 ```
 # mv /var/www/html/config/login_collab1_script.py /opt
 # mv /var/www/html/config/login_collab2_script.py /opt
@@ -256,4 +249,4 @@ Redémarrer :
 # reboot
 ```
 
-L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://myexpense.fbi.com_
+L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://<IP>
