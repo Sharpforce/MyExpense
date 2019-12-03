@@ -1,10 +1,17 @@
 #!/usr/bin/python
 # Script for Administrator (login, visit admin.php)
 import time
+import socket
+import fcntl
+import struct
 from selenium import webdriver
 
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack('256s', ifname[:15]))[20:24])
+
 driver = webdriver.PhantomJS()
-host = "http://myexpense.fbi.com/"
+host = "http://" + get_ip_address('enp0s3') + "/"
 login = "login.php"
 index = "index.php"
 admin = "admin/admin.php"
