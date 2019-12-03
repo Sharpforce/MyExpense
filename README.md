@@ -37,7 +37,7 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 
 
 ## Réinitialiser la base de données de l'application
-Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://<ip>/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
+Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
