@@ -71,7 +71,7 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 
 Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
 ```
-# mv /tmp/Web-Security/* /var/www/html/
+# mv /tmp/MyExpense/src/* /tmp/MyExpense/src/.htaccess /var/www/html/
 ```
 
 #### Par l'archive Zip
