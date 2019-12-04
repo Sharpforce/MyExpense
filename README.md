@@ -34,7 +34,7 @@ A vos claviers !
 Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
 [MyExpense Virtual Machine](http://www.mediafire.com/file/mjctimo9y0nsuqf/MyExpense_Vunerable_Web_Application.ova/file)
 
-
+> La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge
 
 ## Réinitialiser la base de données de l'application
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
