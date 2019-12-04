@@ -85,8 +85,7 @@ Puis extraire l'archive :
 # cd /tmp
 # wget https://github.com/Sharpforce/MyExpense/archive/master.zip
 # unzip master.zip
-# mv master/* /var/www/html
-# mv master/.htaccess /var/www/html/.htaccess
+# mv /tmp/MyExpense-master/src/* /tmp/MyExpense-master/src/.htaccess /var/www/html
 ```
 
 ### Configuration Apache2
@@ -143,7 +142,7 @@ Puis modifier les informations de connexion :
 ```
 
 ### Création de la base de données
-La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ :
+La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/images/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
@@ -171,7 +170,7 @@ Puis Selenium :
 # pip install selenium
 ```
 
-Enfin PhantomJS :
+Et finalement PhantomJS :
 ```
 # wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 # tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
@@ -248,4 +247,4 @@ Redémarrer :
 # reboot
 ```
 
-L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://<IP>
+L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
