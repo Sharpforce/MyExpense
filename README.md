@@ -67,7 +67,6 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 # apt-get install git
 # cd /tmp
 # git clone https://github.com/Sharpforce/MyExpense.git
-# rm -rf /tmp/Web-Security/.git
 ```
 
 Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
