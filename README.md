@@ -34,7 +34,7 @@ A vos claviers !
 Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
 [MyExpense Virtual Machine](http://www.mediafire.com/file/mjctimo9y0nsuqf/MyExpense_Vunerable_Web_Application.ova/file)
 
-
+> La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge
 
 ## Réinitialiser la base de données de l'application
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaitre :
@@ -67,12 +67,11 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 # apt-get install git
 # cd /tmp
 # git clone https://github.com/Sharpforce/MyExpense.git
-# rm -rf /tmp/Web-Security/.git
 ```
 
 Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
 ```
-# mv /tmp/Web-Security/* /var/www/html/
+# mv /tmp/MyExpense/src/* /tmp/MyExpense/src/.htaccess /var/www/html/
 ```
 
 #### Par l'archive Zip
@@ -86,8 +85,7 @@ Puis extraire l'archive :
 # cd /tmp
 # wget https://github.com/Sharpforce/MyExpense/archive/master.zip
 # unzip master.zip
-# mv master/* /var/www/html
-# mv master/.htaccess /var/www/html/.htaccess
+# mv /tmp/MyExpense-master/src/* /tmp/MyExpense-master/src/.htaccess /var/www/html
 ```
 
 ### Configuration Apache2
@@ -144,7 +142,7 @@ Puis modifier les informations de connexion :
 ```
 
 ### Création de la base de données
-La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ :
+La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/images/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
@@ -172,7 +170,7 @@ Puis Selenium :
 # pip install selenium
 ```
 
-Enfin PhantomJS :
+Et finalement PhantomJS :
 ```
 # wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 # tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
@@ -249,4 +247,4 @@ Redémarrer :
 # reboot
 ```
 
-L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://<IP>
+L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
