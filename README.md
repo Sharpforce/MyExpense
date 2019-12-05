@@ -4,6 +4,7 @@
 * **Difficulté :** Easy
 * **Type :** Réaliste
 * **Technologies :** PHP / MySQL
+* **Réseau :** DHCP
 
 MyExpense est une application **volontairement vulnérable** permettant de s’entraîner à détecter et à exploiter différentes vulnérabilités web. Contrairement à une application de type "challenge" plus classique (qui permet de s'entrainer sur une seule vulnérabilité précise), MyExpense contient un ensemble de vulnérabilités. 
 
