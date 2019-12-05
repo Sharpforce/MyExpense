@@ -2,10 +2,10 @@
 
 ## Challenge details
 
-**Difficulty :** Easy
-**Type :** Realist / Web (not a boot 2 root machine)
-**Technologies :** PHP / MySQL
-**Network :** DHCP
+* **Difficulty :** Easy
+* **Type :** Realist / Web (not a boot 2 root machine)
+* **Technologies :** PHP / MySQL
+* **Network :** DHCP
 
 ## Description
 
