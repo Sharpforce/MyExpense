@@ -1,5 +1,7 @@
 # My Expense Vulnerable Web Application
 
+[French version](README.fr.md)
+
 ## Challenge details
 
 * **Difficulty :** Easy
