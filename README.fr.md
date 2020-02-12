@@ -52,7 +52,7 @@ L'installation a été testée sous un système d'exploitation Linux Debian9.
 ### Installation des paquets
 Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi qu'a la base de données MySql (qui sera MariaDB pour une Debian9) :
 ```
-# apt-get install apache2 mysql-server php7.0 php7.0-mysql
+# apt-get install apache2 mysql-server php php-mysql
 ```
 
 Puis :

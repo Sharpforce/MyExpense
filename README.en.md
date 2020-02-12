@@ -56,7 +56,7 @@ The installation has been tested on a Linux Debian9 operating system.
 First of all it is necessary to install the Apache web server packages, PHP and the MySql database (which will be MariaDB for a Debian9):
 
 ```
-# apt-get install apache2 mysql-server php7.0 php7.0-mysql
+# apt-get install apache2 mysql-server php php-mysql
 ```
 
 Then:
