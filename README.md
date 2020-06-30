@@ -34,7 +34,7 @@ Once the challenge is done, the flag will be displayed on the application while 
 
 ## Downloading the virtual machine
 
-It is easier to get the application by directly downloading the virtual machine in _.vbox_ format:
+It is easier to get the application by directly downloading the virtual machine (v1.0) in _.vbox_ format:
 [MyExpense Virtual Machine](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
 
 > The machine is in DHCP configuration, finding its IP address is part of the challenge.
@@ -43,7 +43,7 @@ It is easier to get the application by directly downloading the virtual machine 
 
 It is possible to restore the application database so that you can restart from the initial state. To do this, go to the url _http://ip/config/setup.php_ then click on _Create/restore the database_. A message indicating that the operation has been carried out successfully should appear:
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 
 
@@ -167,9 +167,9 @@ Then change the connection information :
 
 The configuration of MyExpense application should now be accessible via the url _http://<ip>/config/setup.php_ (it is possible that an error is displayed as long as the database is not created yet):
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/images/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
-Verify database information the click on **Create/Restore the database**:![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+Verify database information the click on **Create/Restore the database**:![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 ### Installation of users scripts (bots):
 

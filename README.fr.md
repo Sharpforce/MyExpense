@@ -32,7 +32,7 @@ Une fois le challenge réussi, le flag sera affiché sur l'application en étant
 A vos claviers !
 ```
 ## Téléchargement de la machine virtuelle
-Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
+Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle (v1.0) au format _.vbox_ :
 [MyExpense Virtual Machine](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
 
 > La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge
@@ -40,7 +40,7 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 ## Réinitialiser la base de données de l'application
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 
 
@@ -145,10 +145,10 @@ Puis modifier les informations de connexion :
 ### Création de la base de données
 La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/images/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
 Vérifier les informations puis cliquer sur **Create/Restore the database** :
-![](https://github.com/Sharpforce/MyExpense/blob/master/images/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 ### Installation des scripts employés
 L'application doit être maintenant installée et fonctionnelle. Afin de pouvoir compléter le challenge proposé et de rendre l'expérience un peu plus immersif, il est nécessaire d'installer les scripts de simulation d'action des employés.
