@@ -82,7 +82,7 @@ You can install git tool to download the source files of the application or you 
 Then move the source code into the Apache directory */var/www/html/*:
 
 ```
-# mv /tmp/MyExpense/src/* /tmp/MyExpense/src/.htaccess /var/www/html/
+# mv /tmp/MyExpense/* /tmp/MyExpense/src/.htaccess /var/www/html/
 ```
 
 #### From Zip file
@@ -99,7 +99,7 @@ The, extract the zip file:
 # cd /tmp
 # wget https://github.com/Sharpforce/MyExpense/archive/master.zip
 # unzip master.zip
-# mv /tmp/MyExpense-master/src/* /tmp/MyExpense-master/src/.htaccess /var/www/html
+# mv /tmp/MyExpense-master/* /tmp/MyExpense-master/.htaccess /var/www/html
 ```
 
 ### Apache2 configuration
