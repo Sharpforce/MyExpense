@@ -159,6 +159,8 @@ Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans 
 # mv /var/www/html/config/login_collab2_script.py /opt
 # mv /var/www/html/config/login_manager_script.py /opt
 # mv /var/www/html/config/login_admin_script.py /opt
+# mv /var/www/html/config/login_scripts.sh /opt
+# chmod +x /opt/login_scripts.sh
 ```
 
 Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Python, Selenium Webdriver ainsi que PhantomJS). Tout d'abord installer Python :
@@ -178,7 +180,21 @@ Et finalement PhantomJS :
 # cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/
 ```
 
+Exporter le chemin d'OPENNSSL_CONF :
+
+```
+# vim ~/.bashrc
+export OPENSSL_CONF=/etc/ssl/
+```
+
+Recharger le fichier :
+
+```
+source ~/.bashrc
+```
+
 Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
+
 ```
 # python -W ignore /opt/login_collab1_script.py &
 # python -W ignore /opt/login_collab2_script.py &
@@ -188,59 +204,29 @@ Il est possible d'exécuter les scripts directement et de commencer à attaquer 
 
 Il peut être plus judicieux de lancer ses scripts au démarrage de la machine afin de ne pas avoir à les lancer à chaque fois :
 ```
-# vim /etc/systemd/system/rc-local.service
+# vim /lib/systemd/system/login_scripts.service
 ```
 
 Renseigner ceci dans le fichier :
 ```
 [Unit]
-Description=/etc/rc.local Compatibility
-ConditionPathExists=/etc/rc.local
+Description=Runs users scripts for MyExpense Vuln VM
+ConditionPathExists=/opt/login_scripts.sh
 
 [Service]
 Type=forking
-ExecStart=/etc/rc.local start
-TimeoutSec=0
-StandardOutput=tty
-RemainAfterExit=yes
-SysVStartPriority=99
+ExecStart=/opt/login_scripts.sh
+
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Créer le fichier _rc.local_ :
-```
-# vim /etc/rc.local
-```
-
-Renseigner ceci :
-```
-#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
-
-/usr/bin/python /opt/login_collab1_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_collab2_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_manager_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_admin_script.py > /dev/null 2>&1 &
-
-exit 0
-```
-
 Ajouter le script au démarrage du système :
 ```
-# chmod +x /etc/rc.local
-# systemctl enable rc-local
+# cd /etc/systemd/system
+# ln -s /lib/systemd/system/login_scripts.service
+# systemctl enable login_scripts
 ```
 
 Redémarrer :

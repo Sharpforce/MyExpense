@@ -51,14 +51,14 @@ It is possible to restore the application database so that you can restart from 
 
 ### Operating system
 
-The installation has been tested on a Linux Debian9 operating system.
+The installation has been tested on a Linux Debian10 operating system.
 
 ### Packages installation
 
 First of all it is necessary to install the Apache web server packages, PHP and the MySql database (which will be MariaDB for a Debian9):
 
 ```
-# apt-get install apache2 mysql-server php php-mysql
+# apt-get install apache2 mariadb-server php php-mysql
 ```
 
 Then:
@@ -82,7 +82,7 @@ You can install git tool to download the source files of the application or you 
 Then move the source code into the Apache directory */var/www/html/*:
 
 ```
-# mv /tmp/MyExpense/* /tmp/MyExpense/src/.htaccess /var/www/html/
+# mv /tmp/MyExpense/* /tmp/MyExpense/.htaccess /var/www/html/
 ```
 
 #### From Zip file
@@ -151,7 +151,7 @@ It is now necessary to fill in this information in the configuration file of MyE
 # vim /var/www/html/config/config.inc.php
 ```
 
-Then change the connection information :
+Then change the connection information (if necessary):
 
 ```
   // Database Configuration
@@ -182,6 +182,8 @@ Move the scripts present in the _/var/www/html/config_ directory to another dire
 # mv /var/www/html/config/login_collab2_script.py /opt
 # mv /var/www/html/config/login_manager_script.py /opt
 # mv /var/www/html/config/login_admin_script.py /opt
+# mv /var/www/html/config/login_scripts.sh /opt
+# chmod +x /opt/login_scripts.sh
 ```
 
 Scripts require several packages/components to work (Python, Selenium Webdriver and PhantomJS). First install Python:
@@ -199,9 +201,23 @@ Then Selenium:
 And finally PhantomJS:
 
 ```
+# cd /opt
 # wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 # tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
 # cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/
+```
+
+Export the OPENSSL_CONF path:
+
+```
+# vim ~/.bashrc
+export OPENSSL_CONF=/etc/ssl/
+```
+
+And reload the file:
+
+```
+source ~/.bashrc
 ```
 
 It is possible to execute the scripts directly and start attacking the application (by accessing the application via the web browser):
@@ -216,63 +232,31 @@ It is possible to execute the scripts directly and start attacking the applicati
 But it's simpler to run your scripts at boot time so that you don't have to run them every time:
 
 ```
-# vim /etc/systemd/system/rc-local.service
+# vim /lib/systemd/system/login_scripts.service
 ```
 
 Add the following lines in this file:
 
 ```
 [Unit]
-Description=/etc/rc.local Compatibility
-ConditionPathExists=/etc/rc.local
+Description=Runs users scripts for MyExpense Vuln VM
+ConditionPathExists=/opt/login_scripts.sh
 
 [Service]
 Type=forking
-ExecStart=/etc/rc.local start
-TimeoutSec=0
-StandardOutput=tty
-RemainAfterExit=yes
-SysVStartPriority=99
+ExecStart=/opt/login_scripts.sh
+
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Create _rc.local_ file:
-
-```
-# vim /etc/rc.local
-```
-
-Add the following lines in this file:
-
-```
-#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
-
-/usr/bin/python /opt/login_collab1_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_collab2_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_manager_script.py > /dev/null 2>&1 &
-/usr/bin/python /opt/login_admin_script.py > /dev/null 2>&1 &
-
-exit 0
-```
-
 Add the scripts at system startup:
 
 ```
-# chmod +x /etc/rc.local
-# systemctl enable rc-local
+# cd /etc/systemd/system
+# ln -s /lib/systemd/system/login_scripts.service
+# systemctl enable login_scripts
 ```
 
 Then reboot the machine:
