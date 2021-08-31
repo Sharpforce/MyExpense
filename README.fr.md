@@ -50,7 +50,7 @@ Il est possible de restaurer la base de données de l'application afin de pouvoi
 L'installation a été testée sous un système d'exploitation Linux Debian10.
 
 ### Installation des paquets
-Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi qu'a la base de données MySql (qui sera MariaDB pour une Debian9) :
+Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi que la base de données MySql :
 ```
 # apt-get install apache2 mysql-server php php-mysql
 ```
