@@ -51,7 +51,7 @@ It is possible to restore the application database so that you can restart from 
 
 ### Operating system
 
-The installation has been tested on a Linux Debian10 operating system.
+The installation has been tested on a Linux Debian 10 operating system.
 
 ### Packages installation
 
