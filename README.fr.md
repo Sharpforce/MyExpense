@@ -1,6 +1,9 @@
 # MyExpense Vulnerable Web Application
 
+__Read this in other languages:__ [English](README.md), [Français](README.fr.md)
+
 ## Détails du challenge
+
 * **Difficulté :** Facile
 * **Type :** Réaliste
 * **Technologies :** PHP / MySQL

@@ -1,6 +1,6 @@
-# My Expense Vulnerable Web Application
+# MyExpense Vulnerable Web Application
 
-[French version](README.fr.md)
+__Read this in other languages:__ [English](README.md), [Français](README.fr.md)
 
 ## Challenge details
 
