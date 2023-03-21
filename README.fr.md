@@ -55,6 +55,7 @@ L'installation a été testée sous un système d'exploitation Linux Debian 10.
 ### Installation des paquets
 Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi que la base de données MySql :
 ```
+# apt-get update
 # apt-get install apache2 mysql-server php php-mysql
 ```
 
@@ -146,7 +147,7 @@ Puis modifier les informations de connexion :
 ```
 
 ### Création de la base de données
-La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://<ip>/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
+La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
@@ -168,7 +169,10 @@ Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans 
 
 Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Python, Selenium Webdriver ainsi que PhantomJS). Tout d'abord installer Python :
 ```
-# apt-get install python python-pip libfontconfig
+# apt-get install python2.7
+# cd /tmp
+# wget https://bootstrap.pypa.io/pip/2.7/get-pip.py 
+# python2.7 get-pip.py
 ```
 
 Puis Selenium :
@@ -199,10 +203,10 @@ source ~/.bashrc
 Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
 
 ```
-# python -W ignore /opt/login_collab1_script.py &
-# python -W ignore /opt/login_collab2_script.py &
-# python -W ignore /opt/login_manager_script.py &
-# python -W ignore /opt/login_admin_script.py &
+# python2.7 -W ignore /opt/login_collab1_script.py &
+# python2.7 -W ignore /opt/login_collab2_script.py &
+# python2.7 -W ignore /opt/login_manager_script.py &
+# python2.7 -W ignore /opt/login_admin_script.py &
 ```
 
 Il peut être plus judicieux de lancer ses scripts au démarrage de la machine afin de ne pas avoir à les lancer à chaque fois :

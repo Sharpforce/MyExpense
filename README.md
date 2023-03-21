@@ -28,7 +28,7 @@ Fearing that your former employer may not want to reimburse you for this expense
 
 So you are in your car, in the company carpark and connected to the internal Wi-Fi (the key has still not been changed after your departure). The application is protected by username/password authentication and you hope that the administrator has not yet modified or deleted your access.
 
-Your credentials were: samuel/fzghn4lw
+Your credentials were: slamotte/fzghn4lw
 
 Once the challenge is done, the flag will be displayed on the application while being connected with your (samuel) account.
 
@@ -58,6 +58,7 @@ The installation has been tested on a Linux Debian 10 operating system.
 First of all it is necessary to install the Apache web server packages, PHP and MySql database:
 
 ```
+# apt-get update
 # apt-get install apache2 mariadb-server php php-mysql
 ```
 
@@ -165,7 +166,7 @@ Then change the connection information (if necessary):
 
 ### Creation of the database
 
-The configuration of MyExpense application should now be accessible via the url _http://<ip>/config/setup.php_ (it is possible that an error is displayed as long as the database is not created yet):
+The configuration of MyExpense application should now be accessible via the url _http://your-ip/config/setup.php_ (it is possible that an error is displayed as long as the database is not created yet):
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
@@ -189,7 +190,10 @@ Move the scripts present in the _/var/www/html/config_ directory to another dire
 Scripts require several packages/components to work (Python, Selenium Webdriver and PhantomJS). First install Python:
 
 ```
-# apt-get install python python-pip libfontconfig
+# apt-get install python2.7
+# cd /tmp
+# wget https://bootstrap.pypa.io/pip/2.7/get-pip.py 
+# python2.7 get-pip.py
 ```
 
 Then Selenium:
@@ -223,10 +227,10 @@ source ~/.bashrc
 It is possible to execute the scripts directly and start attacking the application (by accessing the application via the web browser):
 
 ```
-# python -W ignore /opt/login_collab1_script.py &
-# python -W ignore /opt/login_collab2_script.py &
-# python -W ignore /opt/login_manager_script.py &
-# python -W ignore /opt/login_admin_script.py &
+# python2.7 -W ignore /opt/login_collab1_script.py &
+# python2.7 -W ignore /opt/login_collab2_script.py &
+# python2.7 -W ignore /opt/login_manager_script.py &
+# python2.7 -W ignore /opt/login_admin_script.py &
 ```
 
 But it's simpler to run your scripts at boot time so that you don't have to run them every time:
@@ -266,4 +270,3 @@ Then reboot the machine:
 ```
 
 The installation is now **complete**, the application is available at http://your_ip_.
-
