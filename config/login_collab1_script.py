@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# Script for Collab1 (login, visit index.php)
+#!/usr/bin/python3
+
 import time
 import socket
 import fcntl
@@ -7,10 +7,11 @@ import struct
 import os
 from selenium import webdriver
 
+# Script for Collab1 (login, visit index.php)
 time.sleep(10)
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack('256s', ifname[:15]))[20:24])
+    return socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack('256s', bytes(ifname[:15], 'utf-8')))[20:24])
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless=new')
