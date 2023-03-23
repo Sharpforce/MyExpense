@@ -12,7 +12,10 @@ def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack('256s', ifname[:15]))[20:24])
 
-driver = webdriver.PhantomJS(service_log_path=os.path.devnull)
+options = webdriver.ChromeOptions()
+options.add_argument('--headless=new')
+driver = webdriver.Chrome(options=options)
+
 host = "http://" + get_ip_address('enp0s3') + "/"
 login = "login.php"
 index = "index.php"
@@ -26,9 +29,9 @@ while 1:
 
     if html_source.find(logged_pattern) == -1:
         driver.get(host + login)
-        driver.find_element_by_id('username').send_keys("nthomas")
-        driver.find_element_by_id('password').send_keys("en3dtdjy")
-        driver.find_element_by_name("login").click()
+        driver.find_element('id', 'username').send_keys("nthomas")
+        driver.find_element('id', 'password').send_keys("en3dtdjy")
+        driver.find_element('name', 'login').click()
 
     driver.get(host + index)
     time.sleep(20)
