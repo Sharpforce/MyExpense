@@ -45,9 +45,8 @@ It is possible to restore the application database so that you can restart from 
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
-
-
 ## Install from sources
+> Tested on Debian 11 / Python3 / Google Chrome 111.0.5563.110
 
 ### Operating system
 
@@ -187,56 +186,61 @@ Move the scripts present in the _/var/www/html/config_ directory to another dire
 # chmod +x /opt/login_scripts.sh
 ```
 
-Scripts require several packages/components to work (Python, Selenium Webdriver and PhantomJS). First install Python:
+Scripts require several packages/components to work (Python3, Selenium, Google Chrome & Chrome Driver). First download and install the Chrome driver:
 
 ```
-# apt-get install python2.7
 # cd /tmp
-# wget https://bootstrap.pypa.io/pip/2.7/get-pip.py 
-# python2.7 get-pip.py
+# apt-get install xvfb libxi6 libgconf-2-4 unzip
+# wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+# wget https://chromedriver.storage.googleapis.com/`cat LATEST_RELEASE`/chromedriver_linux64.zip
+# unzip chromedriver_linux64.zip
+# mv chromedriver /usr/local/bin/
+# chown root:root /usr/local/bin/chromedriver
+# chmod +x /usr/local/bin/chromedriver
 ```
 
-Then Selenium:
+Then Chrome browser :
 
 ```
-# pip install selenium
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# dpkg -i google-chrome-stable_current_amd64.deb
+# apt-get install -f
 ```
 
-And finally PhantomJS:
+Then, Install Python3, Pip and Selenium:
 
 ```
-# cd /opt
-# wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
-# tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
-# cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/
-```
-
-Export the OPENSSL_CONF path:
-
-```
-# vim ~/.bashrc
-export OPENSSL_CONF=/etc/ssl/
-```
-
-And reload the file:
-
-```
-source ~/.bashrc
+# apt-get install python3-pip
+# pip3 install selenium
 ```
 
 It is possible to execute the scripts directly and start attacking the application (by accessing the application via the web browser):
 
 ```
-# python2.7 -W ignore /opt/login_collab1_script.py &
-# python2.7 -W ignore /opt/login_collab2_script.py &
-# python2.7 -W ignore /opt/login_manager_script.py &
-# python2.7 -W ignore /opt/login_admin_script.py &
+# python3 -W ignore /opt/login_collab1_script.py &
+# python3 -W ignore /opt/login_collab2_script.py &
+# python3 -W ignore /opt/login_manager_script.py &
+# python3 -W ignore /opt/login_admin_script.py &
 ```
 
-But it's simpler to run your scripts at boot time so that you don't have to run them every time:
+But it's simpler to run your scripts at boot time so that you don't have to run them every time.
+
+Create the myexpense Debian user (put what you want as a password): 
 
 ```
-# vim /lib/systemd/system/login_scripts.service
+# adduser myexpense
+passwd: password updated successfully
+Changing the user information for myexpense
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+```
+
+```
+# vim /etc/systemd/system/login_scripts.service
 ```
 
 Add the following lines in this file:
@@ -249,6 +253,9 @@ ConditionPathExists=/opt/login_scripts.sh
 [Service]
 Type=forking
 ExecStart=/opt/login_scripts.sh
+User=myexpense
+Group=myexpense
+Restart=on-failure
 
 
 [Install]
@@ -258,9 +265,7 @@ WantedBy=multi-user.target
 Add the scripts at system startup:
 
 ```
-# cd /etc/systemd/system
-# ln -s /lib/systemd/system/login_scripts.service
-# systemctl enable login_scripts
+# systemctl enable login_scripts.service
 ```
 
 Then reboot the machine:

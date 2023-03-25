@@ -20,6 +20,7 @@ A des fins d’entraînement, il est conseillé de ne pas utiliser d'outils de d
 
 ## Scénario
 Afin de simuler une attaque ayant un but et une motivation réelle, voici un scénario menant à la validation du challenge :
+
 ```
 Vous vous nommez "Samuel Lamotte" et vous venez de vous faire licencier par votre entreprise "Furtura Business Informatique". 
 Malheureusement à cause de votre départ précipité, vous n'avez pas eu le temps de valider votre note de frais de votre dernier déplacement professionnel, note s'élevant quand même à 750 € correspondant à un aller retour en avion pour une mission chez votre dernier client. 
@@ -33,6 +34,7 @@ Vos identifiants étaient : slamotte/fzghn4lw
 Une fois le challenge réussi, le flag sera affiché sur l'application en étant connecté avec votre compte.
 
 A vos claviers !
+
 ```
 ## Téléchargement de la machine virtuelle
 Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle (v1.0) au format _.vbox_ :
@@ -48,18 +50,21 @@ Il est possible de restaurer la base de données de l'application afin de pouvoi
 
 
 ## Installation à partir des sources
+> Testé sur Debian 11 / Python3 / Google Chrome 111.0.5563.110
 
 ### Système d'exploitation
 L'installation a été testée sous un système d'exploitation Linux Debian 10.
 
 ### Installation des paquets
 Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi que la base de données MySql :
+
 ```
 # apt-get update
 # apt-get install apache2 mysql-server php php-mysql
 ```
 
 Puis :
+
 ```
 # rm /var/www/html/index.html
 ```
@@ -68,6 +73,7 @@ Puis :
 Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP.
 
 #### Par l'utilitaire Git
+
 ```
 # apt-get install git
 # cd /tmp
@@ -75,17 +81,20 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 ```
 
 Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
+
 ```
 # mv /tmp/MyExpense/src/* /tmp/MyExpense/src/.htaccess /var/www/html/
 ```
 
 #### Par l'archive Zip
 Il sera peut être nécessaire d'installer le paquet **unzip** afin d'extraire l'archive :
+
 ```
 # apt-get install unzip
 ```
 
 Puis extraire l'archive :
+
 ```
 # cd /tmp
 # wget https://github.com/Sharpforce/MyExpense/archive/master.zip
@@ -95,11 +104,13 @@ Puis extraire l'archive :
 
 ### Configuration Apache2
 Une modification doit être effectuée au sein du fichier de configuration d'Apache2 afin de prendre en compte le fichier _.htacess_ :
+
 ```
 # vim /etc/apache2/apache2.conf
 ```
 
 Modifier la ligne _AllowOverride None_ par _AllowOverride All_ dans la partie _<Directory /var/www/>_ :
+
 ```
 <Directory /var/www/>
         Options Indexes FollowSymLinks
@@ -109,16 +120,19 @@ Modifier la ligne _AllowOverride None_ par _AllowOverride All_ dans la partie _<
 ```
 
 Puis redémarrer le service Apache2 :
+
 ```
 # service apache2 restart
 ```
 
 ### Configuration de la base de données
+
 ```
 # mysql -u root
 ```
 
 Création d'un nouvel utilisateur et attribution des droits :
+
 ```
 MariaDB [(none)]> grant all on *.* to MyExpenseUser@localhost identified by 'password';
 Query OK, 0 rows affected (0.00 sec)
@@ -131,11 +145,13 @@ Bye
 ```
 
 Il faut maintenant renseigner ces informations au niveau du fichier de configuration de l'application :
+
 ```
 # vim /var/www/html/config/config.inc.php
 ```
 
 Puis modifier les informations de connexion :
+
 ```
   // Database Configuration
   $_bdd = array();
@@ -158,6 +174,7 @@ Vérifier les informations puis cliquer sur **Create/Restore the database** :
 L'application doit être maintenant installée et fonctionnelle. Afin de pouvoir compléter le challenge proposé et de rendre l'expérience un peu plus immersif, il est nécessaire d'installer les scripts de simulation d'action des employés.
 
 Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans un autre répertoire, par exemple _/opt_ :
+
 ```
 # mv /var/www/html/config/login_collab1_script.py /opt
 # mv /var/www/html/config/login_collab2_script.py /opt
@@ -167,54 +184,65 @@ Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans 
 # chmod +x /opt/login_scripts.sh
 ```
 
-Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Python, Selenium Webdriver ainsi que PhantomJS). Tout d'abord installer Python :
+Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Python3, Selenium, Google Chrome et Chrome driver). Tout d'abord installer Chrome driver :
+
 ```
-# apt-get install python2.7
 # cd /tmp
-# wget https://bootstrap.pypa.io/pip/2.7/get-pip.py 
-# python2.7 get-pip.py
+# apt-get install xvfb libxi6 libgconf-2-4 unzip
+# wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+# wget https://chromedriver.storage.googleapis.com/`cat LATEST_RELEASE`/chromedriver_linux64.zip
+# unzip chromedriver_linux64.zip
+# mv chromedriver /usr/local/bin/
+# chown root:root /usr/local/bin/chromedriver
+# chmod +x /usr/local/bin/chromedriver
 ```
 
-Puis Selenium :
-```
-# pip install selenium
-```
-
-Et finalement PhantomJS :
-```
-# wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
-# tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
-# cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/
-```
-
-Exporter le chemin d'OPENNSSL_CONF :
+Puis Google Chrome :
 
 ```
-# vim ~/.bashrc
-export OPENSSL_CONF=/etc/ssl/
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# dpkg -i google-chrome-stable_current_amd64.deb
+# apt-get install -f
 ```
 
-Recharger le fichier :
+Ensuite Python3, Pip et Selenium:
 
 ```
-source ~/.bashrc
+# apt-get install python3-pip
+# pip3 install selenium
 ```
 
 Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
 
 ```
-# python2.7 -W ignore /opt/login_collab1_script.py &
-# python2.7 -W ignore /opt/login_collab2_script.py &
-# python2.7 -W ignore /opt/login_manager_script.py &
-# python2.7 -W ignore /opt/login_admin_script.py &
+# python3 -W ignore /opt/login_collab1_script.py &
+# python3 -W ignore /opt/login_collab2_script.py &
+# python3 -W ignore /opt/login_manager_script.py &
+# python3 -W ignore /opt/login_admin_script.py &
 ```
 
 Il peut être plus judicieux de lancer ses scripts au démarrage de la machine afin de ne pas avoir à les lancer à chaque fois :
+
+Créer l'utilisateur Debian "myexpense" (le mot de passe importe peu) : 
+
 ```
-# vim /lib/systemd/system/login_scripts.service
+# adduser myexpense
+passwd: password updated successfully
+Changing the user information for myexpense
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
 ```
 
-Renseigner ceci dans le fichier :
+```
+# vim /etc/systemd/system/login_scripts.service
+```
+
+Renseigner les lignes suivantes dans ce fichier :
+
 ```
 [Unit]
 Description=Runs users scripts for MyExpense Vuln VM
@@ -223,6 +251,9 @@ ConditionPathExists=/opt/login_scripts.sh
 [Service]
 Type=forking
 ExecStart=/opt/login_scripts.sh
+User=myexpense
+Group=myexpense
+Restart=on-failure
 
 
 [Install]
@@ -230,13 +261,13 @@ WantedBy=multi-user.target
 ```
 
 Ajouter le script au démarrage du système :
+
 ```
-# cd /etc/systemd/system
-# ln -s /lib/systemd/system/login_scripts.service
-# systemctl enable login_scripts
+# systemctl enable login_scripts.service
 ```
 
 Redémarrer :
+
 ```
 # reboot
 ```
