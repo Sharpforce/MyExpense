@@ -232,7 +232,7 @@ iface enp0s3 inet dhcp
 
 And if you used Virtualbox:
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png?raw=true)
 
 It is possible to execute the scripts directly and start attacking the application (by accessing the application via the web browser):
 

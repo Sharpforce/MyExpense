@@ -230,7 +230,7 @@ iface enp0s3 inet dhcp
 
 Et sous VirtualBox :
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png?raw=true)
 
 Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
 
