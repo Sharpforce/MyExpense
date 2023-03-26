@@ -212,6 +212,26 @@ Ensuite Python3, Pip et Selenium:
 # pip3 install selenium
 ```
 
+Chacun des scripts se basent sur l'adresse IP de l'interface enp0s3. Pour que la machine fonctionne correctement, configurer le fichier _/etc/network/interfaces_ comme ceci :
+
+```
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+allow-hotplug enp0s3
+iface enp0s3 inet dhcp
+```
+
+Et sous VirtualBox :
+
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png.png?raw=true)
+
 Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
 
 ```
