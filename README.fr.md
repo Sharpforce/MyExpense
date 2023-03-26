@@ -37,8 +37,10 @@ A vos claviers !
 
 ```
 ## Téléchargement de la machine virtuelle
-Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle (v1.0) au format _.vbox_ :
-[MyExpense Virtual Machine](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
+
+Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
+- [MyExpense Virtual Machine (LATEST)](https://www.mediafire.com/file/smscycfha2qb3u1/My_Expense_Vulnerable_Web_Application_%2528Debian11%2529.ova/file)
+- [MyExpense Virtual Machine (v1.0) Vulnhub Version](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
 
 > La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge
 
