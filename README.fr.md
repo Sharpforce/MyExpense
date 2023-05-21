@@ -42,7 +42,7 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 - [MyExpense Virtual Machine (LATEST)](https://www.mediafire.com/file/smscycfha2qb3u1/My_Expense_Vulnerable_Web_Application_%2528Debian11%2529.ova/file)
 - [MyExpense Virtual Machine (v1.0) Vulnhub Version](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
 
-> La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge
+> La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge (à partir de la version 1.2 l'adresse IP est affichée au démarrage de la box).
 
 ## Réinitialiser la base de données de l'application
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
