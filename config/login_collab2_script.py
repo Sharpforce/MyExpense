@@ -6,6 +6,7 @@ import fcntl
 import struct
 import os
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
 # Script for Collab2 (login, visit index.php)
 time.sleep(10)
@@ -15,6 +16,9 @@ def get_ip_address(ifname):
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless=new')
+options.add_argument('--disable-extensions')
+options.add_argument('--disable-popup-blocking')
+options.set_capability('unhandledPromptBehavior', 'dismiss')
 driver = webdriver.Chrome(options=options)
 
 host = "http://" + get_ip_address('enp0s3') + "/"
@@ -25,16 +29,19 @@ logged_pattern = "Last messages"
 time.sleep(30)
 
 while 1:
-    driver.get(host + index)
-    html_source = driver.page_source
+    try:
+      driver.get(host + index)
+      html_source = driver.page_source
 
-    if html_source.find(logged_pattern) == -1:
-        driver.get(host + login)
-        driver.find_element('id', 'username').send_keys("nthomas")
-        driver.find_element('id', 'password').send_keys("en3dtdjy")
-        driver.find_element('name', 'login').click()
+      if html_source.find(logged_pattern) == -1:
+          driver.get(host + login)
+          driver.find_element('id', 'username').send_keys("nthomas")
+          driver.find_element('id', 'password').send_keys("en3dtdjy")
+          driver.find_element('name', 'login').click()
 
-    driver.get(host + index)
-    time.sleep(20)
+      driver.get(host + index)
+      time.sleep(20)
+    except Exception:
+      pass
 
 driver.quit()
