@@ -1,6 +1,15 @@
 MyExpense Application
 =======================
 
+v1.2 (21/05/2023)
+======
+
++ Added
+  - IP address is now diplayed at the startup of the virtual machine
+
++ Changed
+  - Improve Selenium/Chrome users scripts
+
 v1.1 (28/03/2023)
 ======
 
