@@ -35,7 +35,7 @@ Once the challenge is done, the flag will be displayed on the application while 
 ## Downloading the virtual machine
 
 It is easier to get the application by directly downloading the virtual machine in _.vbox_ format:
-- [MyExpense Virtual Machine (LATEST)](https://www.mediafire.com/file/smscycfha2qb3u1/My_Expense_Vulnerable_Web_Application_%2528Debian11%2529.ova/file)
+- [MyExpense Virtual Machine (LATEST)](https://www.mediafire.com/file/fex3dyfbpjbbqtc/My_Expense_Vulnerable_Web_Application_-_1.2.ova/file)
 - [MyExpense Virtual Machine (v1.0) Vulnhub Version](http://www.mediafire.com/file/mx1b7qe00y9dfzv/MyExpense_Vulnerable_Web_Application.ova/file)
 
 > The machine is in DHCP configuration, finding its IP address is part of the challenge (from version 1.2 the IP address is displayed when the box is started).
