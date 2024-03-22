@@ -1,7 +1,5 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/global.inc.php";
-  connectToDatabase();
-
   if(isset($_POST['createorrestore']) && $_POST['createorrestore'] === "createorrestore") {
     createOrRestoreDatabase();
   }
