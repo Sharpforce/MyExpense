@@ -29,11 +29,11 @@ mkdir /opt/myexpense_scripts
 # Move scripts to custom scripts directory.
 echo "Moving scripts to custom scripts directory..."
 INSTALL_DIR="$(dirname "$(realpath "$0")")"
-mv "$INSTALL_DIR/../config/login_collab1_script.py" /opt/myexpense_scripts
-mv "$INSTALL_DIR/../config/login_collab2_script.py" /opt/myexpense_scripts
-mv "$INSTALL_DIR/../config/login_manager_script.py" /opt/myexpense_scripts
-mv "$INSTALL_DIR/../config/login_admin_script.py" /opt/myexpense_scripts
-mv "$INSTALL_DIR/../config/login_scripts.sh" /opt/myexpense_scripts
+mv "$INSTALL_DIR/../install/login_collab1_script.py" /opt/myexpense_scripts
+mv "$INSTALL_DIR/../install/login_collab2_script.py" /opt/myexpense_scripts
+mv "$INSTALL_DIR/../install/login_manager_script.py" /opt/myexpense_scripts
+mv "$INSTALL_DIR/../install/login_admin_script.py" /opt/myexpense_scripts
+mv "$INSTALL_DIR/../install/login_scripts.sh" /opt/myexpense_scripts
 
 # Make login_scripts.sh executable.
 echo "Making login_scripts.sh executable..."
