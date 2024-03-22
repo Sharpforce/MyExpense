@@ -110,8 +110,8 @@ Description=Runs users scripts for MyExpense Vuln VM
 ConditionPathExists=/opt/myexpense_scripts/login_scripts.sh
 
 [Service]
-Type=simple
-ExecStart=/opt/myexpense_scripts/login_scripts.sh
+Type=forking
+ExecStart=/bin/bash /opt/myexpense_scripts/login_scripts.sh
 User=myexpense
 Group=myexpense
 Restart=on-failure
@@ -120,10 +120,11 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 
-# Reload systemd daemon to apply changes.
-echo "Reloading systemd daemon..."
-systemctl daemon-reload
-systemctl restart login_scripts.service
+# Enable myexpense scripts service.
+systemctl enable login_scripts.service
 
 # Inform the user that the installation process is complete.
 echo "Installation process completed."
+
+# Reboot
+reboot
