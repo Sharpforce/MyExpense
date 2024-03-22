@@ -5,7 +5,7 @@ __Read this in other languages:__ [English](README.md), [Français](README.fr.md
 ## Détails du challenge
 
 * **Difficulté :** Facile
-* **Type :** Réaliste
+* **Type :** Réaliste / Web (Pas une machine boot 2 root)
 * **Technologies :** PHP / MariaDB
 * **Réseau :** DHCP
 
@@ -14,11 +14,13 @@ MyExpense est une application **volontairement vulnérable** permettant de s’e
 Le second objectif de cette application est d'immerger l'attaquant dans un environnement professionnel. Pour cela, un effort a été fourni afin que l'application ressemble le plus possible à un outil destiné à une utilisation interne par les employés de l'entreprise "Futura Business Informatique". De plus, il est possible (et nécessaire afin de récupérer le flag/drapeau validant le challenge) de lancer des scripts permettant de simuler l'utilisation de l'application par des employés afin d'exploiter certaines vulnérabilités ayant pour victime les utilisateurs authentifiés.
 
 ## Point d'attention
+
 L'application étant volontairement vulnérable il n'est pas souhaitable de l'exposer sur le réseau Internet car d'autres personnes que vous pourront y y accéder. Il est conseillé d'utiliser une machine virtuelle (en utilisant par exemple le logiciel [VirtualBox](https://www.virtualbox.org/)) et de restreindre la connectivité **hôte/machine vulnérable** (mode Réseau privé hôte).
 
 A des fins d’entraînement, il est conseillé de ne pas utiliser d'outils de détection ou d'exploitation de vulnérabilités (scanner de vulnérabilité, etc) et de ne pas regarder le code source de l'application (mode *blackbox*).  
 
 ## Scénario
+
 Afin de simuler une attaque ayant un but et une motivation réelle, voici un scénario menant à la validation du challenge :
 
 ```
@@ -50,9 +52,11 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 ### Installation à partir des sources
 
 #### Compatibilité
+
 > Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
 #### Installation de Git et récupération du code source
+
 Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application :
 ```
 # apt install git
@@ -69,6 +73,7 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 L'installation se terminera par un redémarrage de la machine.
 
 #### Création de la base de données
+
 La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
@@ -79,6 +84,7 @@ Vérifier les informations puis cliquer sur **Create/Restore the database** :
 L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
 
 ## Réinitialiser la base de données de l'application
+
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
