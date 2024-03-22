@@ -23,8 +23,24 @@ echo "Removing default index.html file..."
 rm /var/www/html/index.html
 
 # Move all contents of the current directory to /var/www/html/.
+INSTALL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 echo "Moving all contents of the current directory to /var/www/html/..."
-mv ./* /var/www/html/
+mv "$INSTALL_DIR/../admin" /var/www/html/
+mv "$INSTALL_DIR/../config" /var/www/html/
+mv "$INSTALL_DIR/../css" /var/www/html/
+mv "$INSTALL_DIR/../fonts" /var/www/html/
+mv "$INSTALL_DIR/../img" /var/www/html/
+mv "$INSTALL_DIR/../includes" /var/www/html/
+mv "$INSTALL_DIR/../.htaccess" /var/www/html/
+mv "$INSTALL_DIR/../expense_reports.php" /var/www/html/
+mv "$INSTALL_DIR/../index.php" /var/www/html/
+mv "$INSTALL_DIR/../login.php" /var/www/html/
+mv "$INSTALL_DIR/../logout.php" /var/www/html/
+mv "$INSTALL_DIR/../profile.php" /var/www/html/
+mv "$INSTALL_DIR/../robots.txt" /var/www/html/
+mv "$INSTALL_DIR/../signup.php" /var/www/html/
+mv "$INSTALL_DIR/../site.php" /var/www/html/
 
 # Modify AllowOverride directive in /etc/apache2/apache2.conf.
 echo "Updating AllowOverride in Apache configuration..."
