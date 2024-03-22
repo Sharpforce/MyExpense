@@ -54,20 +54,6 @@ Il est possible de restaurer la base de données de l'application afin de pouvoi
 ### Compatibilité
 > Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
-### Installation des paquets
-Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi que la base de données MySql :
-
-```
-# apt update
-# apt install apache2 mariadb-server php php-mysql
-```
-
-Puis :
-
-```
-# rm /var/www/html/index.html
-```
-
 ### Installation de git et récupération du code source
 Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP.
 
@@ -101,184 +87,20 @@ Puis extraire l'archive :
 # mv /tmp/MyExpense-master/* /tmp/MyExpense-master/.htaccess /var/www/html
 ```
 
-### Configuration Apache2
-Une modification doit être effectuée au sein du fichier de configuration d'Apache2 afin de prendre en compte le fichier _.htacess_ :
+### Exécution du script d'installation
 
 ```
-# vim /etc/apache2/apache2.conf
+# /bin/bash /tmp/MyExpense/install/install.sh
 ```
 
-Modifier la ligne _AllowOverride None_ par _AllowOverride All_ dans la partie _<Directory /var/www/>_ :
-
-```
-<Directory /var/www/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>
-```
-
-Puis redémarrer le service Apache2 :
-
-```
-# service apache2 restart
-```
-
-### Configuration de la base de données
-
-```
-# mysql -u root
-```
-
-Création d'un nouvel utilisateur et attribution des droits :
-
-```
-MariaDB [(none)]> grant all on *.* to MyExpenseUser@localhost identified by 'password';
-Query OK, 0 rows affected (0.00 sec)
-
-MariaDB [(none)]> flush privileges;
-Query OK, 0 rows affected (0.00 sec)
-
-MariaDB [(none)]> quit
-Bye
-```
-
-Il faut maintenant renseigner ces informations au niveau du fichier de configuration de l'application :
-
-```
-# vim /var/www/html/config/config.inc.php
-```
-
-Puis modifier les informations de connexion :
-
-```
-  // Database Configuration
-  $_bdd = array();
-  $_bdd['server'] = "127.0.0.1";
-  $_bdd['port'] = "3306";
-  $_bdd['user'] = "MyExpenseUser";
-  $_bdd['password'] = "password";
-  $_bdd['database'] = "myexpense";
-```
+L'installation se terminera par un redémarrage de la machine.
 
 ### Création de la base de données
-La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ (il est possible qu'une erreur s'affiche tant que la base de données n'est pas créée) :
+La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
 Vérifier les informations puis cliquer sur **Create/Restore the database** :
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
-
-### Installation des scripts employés
-L'application doit être maintenant installée et fonctionnelle. Afin de pouvoir compléter le challenge proposé et de rendre l'expérience un peu plus immersif, il est nécessaire d'installer les scripts de simulation d'action des employés.
-
-Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans un autre répertoire, par exemple _/opt_ :
-
-```
-# mv /var/www/html/config/login_collab1_script.py /opt
-# mv /var/www/html/config/login_collab2_script.py /opt
-# mv /var/www/html/config/login_manager_script.py /opt
-# mv /var/www/html/config/login_admin_script.py /opt
-# mv /var/www/html/config/login_scripts.sh /opt
-# chmod +x /opt/login_scripts.sh
-```
-
-Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Google Chrome, Python3, Selenium, Webdriver). Tout d'abord installer Google Chrome :
-
-```
-# cd /tmp
-# apt-get install xvfb libxi6 libgconf-2-4
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# dpkg -i google-chrome-stable_current_amd64.deb
-# apt -f install
-```
-
-Puis Python3 et ses composants :
-
-```
-# apt install python3-pip
-# pip3 install --break-system-packages selenium
-# pip3 install --break-system-packages webdriver-manager
-```
-
-Chacun des scripts se basent sur l'adresse IP de l'interface enp0s3. Pour que la machine fonctionne correctement, configurer le fichier _/etc/network/interfaces_ comme ceci :
-
-```
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-source /etc/network/interfaces.d/*
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-allow-hotplug enp0s3
-iface enp0s3 inet dhcp
-```
-
-Et sous VirtualBox :
-
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/virtualbox-network.png?raw=true)
-
-Il est possible d'exécuter les scripts directement et de commencer à attaquer l'application (en accédant à l'application via le navigateur web) :
-
-```
-# python3 -W ignore /opt/login_collab1_script.py &
-# python3 -W ignore /opt/login_collab2_script.py &
-# python3 -W ignore /opt/login_manager_script.py &
-# python3 -W ignore /opt/login_admin_script.py &
-```
-
-Il peut être plus judicieux de lancer ses scripts au démarrage de la machine afin de ne pas avoir à les lancer à chaque fois :
-
-Créer l'utilisateur Debian "myexpense" (le mot de passe importe peu) : 
-
-```
-# adduser myexpense
-passwd: password updated successfully
-Changing the user information for myexpense
-Enter the new value, or press ENTER for the default
-        Full Name []:
-        Room Number []:
-        Work Phone []:
-        Home Phone []:
-        Other []:
-```
-
-```
-# vim /etc/systemd/system/login_scripts.service
-```
-
-Renseigner les lignes suivantes dans ce fichier :
-
-```
-[Unit]
-Description=Runs users scripts for MyExpense Vuln VM
-ConditionPathExists=/opt/login_scripts.sh
-
-[Service]
-Type=forking
-ExecStart=/opt/login_scripts.sh
-User=myexpense
-Group=myexpense
-Restart=on-failure
-
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Ajouter le script au démarrage du système :
-
-```
-# systemctl enable login_scripts.service
-```
-
-Redémarrer :
-
-```
-# reboot
-```
 
 L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
