@@ -187,7 +187,7 @@ Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Googl
 
 ```
 # cd /tmp
-# apt-get install xvfb libxi6 libgconf-2-4 unzip
+# apt-get install xvfb libxi6 libgconf-2-4
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # dpkg -i google-chrome-stable_current_amd64.deb
 # apt -f install
