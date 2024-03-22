@@ -47,14 +47,11 @@ It is possible to restore the application database so that you can restart from 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 ## Install from sources
-> Tested on Debian 11 / Python3 / Google Chrome 111.0.5563.110
 
-### Operating system
-
-The installation has been tested on a Linux Debian 10 operating system.
+### Compatibility
+> Tested on Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
 ### Packages installation
-
 First of all it is necessary to install the Apache web server packages, PHP and MySql database:
 
 ```
@@ -172,7 +169,7 @@ The configuration of MyExpense application should now be accessible via the url 
 
 Verify database information the click on **Create/Restore the database**:![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
-### Installation of users scripts (bots):
+### Installation of users scripts (bots)
 
 The application is now installed and functional. In order to complete the proposed challenge and make the experience little more immersive, it is necessary to install the employees scripts (that's simulate users).
 
@@ -187,20 +184,17 @@ Move the scripts present in the _/var/www/html/config_ directory to another dire
 # chmod +x /opt/login_scripts.sh
 ```
 
-Scripts require several packages/components to work (Python3, Selenium, Google Chrome & Chrome Driver). First download and install the Chrome driver:
+Scripts require several packages/components to work (Google Chrome, Python3, Selenium, Webdriver). First download and install Google Chrome browser:
 
 ```
 # cd /tmp
 # apt-get install xvfb libxi6 libgconf-2-4 unzip
-# wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-# wget https://chromedriver.storage.googleapis.com/`cat LATEST_RELEASE`/chromedriver_linux64.zip
-# unzip chromedriver_linux64.zip
-# mv chromedriver /usr/local/bin/
-# chown root:root /usr/local/bin/chromedriver
-# chmod +x /usr/local/bin/chromedriver
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# dpkg -i google-chrome-stable_current_amd64.deb
+# apt -f install
 ```
 
-Then Chrome browser :
+Then Python3:
 
 ```
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -211,8 +205,9 @@ Then Chrome browser :
 Then, Install Python3, Pip and Selenium:
 
 ```
-# apt-get install python3-pip
-# pip3 install selenium
+# apt install python3-pip
+# pip3 install --break-system-packages selenium
+# pip3 install --break-system-packages webdriver-manager
 ```
 
 Each scripts is based on the IP address of the enp0s3 interface. For this to work properly, configure the _/etc/network/interfaces_ file:

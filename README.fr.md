@@ -49,8 +49,6 @@ Il est possible de restaurer la base de données de l'application afin de pouvoi
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
-
-
 ## Installation à partir des sources
 
 ### Compatibilité
@@ -61,7 +59,7 @@ Dans un premier temps il est nécessaire d'installer les paquets correspondant a
 
 ```
 # apt update
-# apt install apache2 mysql-server php php-mysql
+# apt install apache2 mariadb-server php php-mysql
 ```
 
 Puis :
@@ -84,7 +82,7 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
 
 ```
-# mv /tmp/MyExpense/src/* /tmp/MyExpense/src/.htaccess /var/www/html/
+# mv /tmp/MyExpense/* /tmp/MyExpense/.htaccess /var/www/html/
 ```
 
 #### Par l'archive Zip
@@ -100,7 +98,7 @@ Puis extraire l'archive :
 # cd /tmp
 # wget https://github.com/Sharpforce/MyExpense/archive/master.zip
 # unzip master.zip
-# mv /tmp/MyExpense-master/src/* /tmp/MyExpense-master/src/.htaccess /var/www/html
+# mv /tmp/MyExpense-master/* /tmp/MyExpense-master/.htaccess /var/www/html
 ```
 
 ### Configuration Apache2
