@@ -52,17 +52,16 @@ Il est possible de restaurer la base de données de l'application afin de pouvoi
 
 
 ## Installation à partir des sources
-> Testé sur Debian 11 / Python3 / Google Chrome 111.0.5563.110
 
-### Système d'exploitation
-L'installation a été testée sous un système d'exploitation Linux Debian 10.
+### Compatibilité
+> Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
 ### Installation des paquets
 Dans un premier temps il est nécessaire d'installer les paquets correspondant au serveur web Apache, à PHP ainsi que la base de données MySql :
 
 ```
-# apt-get update
-# apt-get install apache2 mysql-server php php-mysql
+# apt update
+# apt install apache2 mysql-server php php-mysql
 ```
 
 Puis :
@@ -77,7 +76,7 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 #### Par l'utilitaire Git
 
 ```
-# apt-get install git
+# apt install git
 # cd /tmp
 # git clone https://github.com/Sharpforce/MyExpense.git
 ```
@@ -92,7 +91,7 @@ Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/*
 Il sera peut être nécessaire d'installer le paquet **unzip** afin d'extraire l'archive :
 
 ```
-# apt-get install unzip
+# apt install unzip
 ```
 
 Puis extraire l'archive :
@@ -186,32 +185,22 @@ Déplacer les scripts présents dans le répertoire _/var/www/html/config_ dans 
 # chmod +x /opt/login_scripts.sh
 ```
 
-Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Python3, Selenium, Google Chrome et Chrome driver). Tout d'abord installer Chrome driver :
+Les scripts nécessitent plusieurs paquets/composants afin de fonctionner (Google Chrome, Python3, Selenium, Webdriver). Tout d'abord installer Google Chrome :
 
 ```
 # cd /tmp
 # apt-get install xvfb libxi6 libgconf-2-4 unzip
-# wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-# wget https://chromedriver.storage.googleapis.com/`cat LATEST_RELEASE`/chromedriver_linux64.zip
-# unzip chromedriver_linux64.zip
-# mv chromedriver /usr/local/bin/
-# chown root:root /usr/local/bin/chromedriver
-# chmod +x /usr/local/bin/chromedriver
-```
-
-Puis Google Chrome :
-
-```
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # dpkg -i google-chrome-stable_current_amd64.deb
-# apt-get install -f
+# apt -f install
 ```
 
-Ensuite Python3, Pip et Selenium:
+Puis Python3 et ses composants :
 
 ```
-# apt-get install python3-pip
-# pip3 install selenium
+# apt install python3-pip
+# pip3 install --break-system-packages selenium
+# pip3 install --break-system-packages webdriver-manager
 ```
 
 Chacun des scripts se basent sur l'adresse IP de l'interface enp0s3. Pour que la machine fonctionne correctement, configurer le fichier _/etc/network/interfaces_ comme ceci :
