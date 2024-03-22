@@ -6,7 +6,7 @@ __Read this in other languages:__ [English](README.md), [Français](README.fr.md
 
 * **Difficulté :** Facile
 * **Type :** Réaliste
-* **Technologies :** PHP / MySQL
+* **Technologies :** PHP / MariaDB
 * **Réseau :** DHCP
 
 MyExpense est une application **volontairement vulnérable** permettant de s’entraîner à détecter et à exploiter différentes vulnérabilités web. Contrairement à une application de type "challenge" plus classique (qui permet de s'entraîner sur une seule vulnérabilité précise), MyExpense contient un ensemble de vulnérabilités. 
@@ -36,7 +36,10 @@ Une fois le challenge réussi, le flag sera affiché sur l'application en étant
 A vos claviers !
 
 ```
-## Téléchargement de la machine virtuelle
+
+## Installation
+
+### Téléchargement de la machine virtuelle
 
 Il est plus simple de récupérer l'application en téléchargeant directement la machine virtuelle au format _.vbox_ :
 - [MyExpense Virtual Machine (LATEST)](https://www.mediafire.com/file/fex3dyfbpjbbqtc/My_Expense_Vulnerable_Web_Application_-_1.2.ova/file)
@@ -44,20 +47,15 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 
 > La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge (à partir de la version 1.2 l'adresse IP est affichée au démarrage de la box).
 
-## Réinitialiser la base de données de l'application
-Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
+### Installation à partir des sources
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
-
-## Installation à partir des sources
-
-### Compatibilité
+#### Compatibilité
 > Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
-### Installation de git et récupération du code source
+#### Installation de git et récupération du code source
 Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP.
 
-#### Par l'utilitaire Git
+##### Par l'utilitaire Git
 
 ```
 # apt install git
@@ -71,7 +69,7 @@ Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/*
 # mv /tmp/MyExpense/* /tmp/MyExpense/.htaccess /var/www/html/
 ```
 
-#### Par l'archive Zip
+##### Par l'archive Zip
 Il sera peut être nécessaire d'installer le paquet **unzip** afin d'extraire l'archive :
 
 ```
@@ -87,7 +85,7 @@ Puis extraire l'archive :
 # mv /tmp/MyExpense-master/* /tmp/MyExpense-master/.htaccess /var/www/html
 ```
 
-### Exécution du script d'installation
+#### Exécution du script d'installation
 
 ```
 # /bin/bash /tmp/MyExpense/install/install.sh
@@ -95,7 +93,7 @@ Puis extraire l'archive :
 
 L'installation se terminera par un redémarrage de la machine.
 
-### Création de la base de données
+#### Création de la base de données
 La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ :
 
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
@@ -104,3 +102,8 @@ Vérifier les informations puis cliquer sur **Create/Restore the database** :
 ![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
+
+## Réinitialiser la base de données de l'application
+Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
+
+![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
