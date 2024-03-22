@@ -52,37 +52,12 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 #### Compatibilité
 > Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
 
-#### Installation de git et récupération du code source
-Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application ou alors de télécharger directement sur GitHub l'archive au format ZIP.
-
-##### Par l'utilitaire Git
-
+#### Installation de Git et récupération du code source
+Il est possible d'installer l'utilitaire git afin de récupérer les sources de l'application :
 ```
 # apt install git
 # cd /tmp
 # git clone https://github.com/Sharpforce/MyExpense.git
-```
-
-Il faut ensuite déplacer le code source au sein du répertoire */var/www/html/* d'Apache :
-
-```
-# mv /tmp/MyExpense/* /tmp/MyExpense/.htaccess /var/www/html/
-```
-
-##### Par l'archive Zip
-Il sera peut être nécessaire d'installer le paquet **unzip** afin d'extraire l'archive :
-
-```
-# apt install unzip
-```
-
-Puis extraire l'archive :
-
-```
-# cd /tmp
-# wget https://github.com/Sharpforce/MyExpense/archive/master.zip
-# unzip master.zip
-# mv /tmp/MyExpense-master/* /tmp/MyExpense-master/.htaccess /var/www/html
 ```
 
 #### Exécution du script d'installation
