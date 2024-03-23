@@ -44,6 +44,8 @@ It is easier to get the application by directly downloading the virtual machine 
 
 ### Installation from source
 
+> During installation via a virtual machine, the first network interface must be set to either bridge or host_only mode.
+
 #### Compatibility
 
 > Tested on Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58

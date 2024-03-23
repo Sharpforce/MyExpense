@@ -51,6 +51,8 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 
 ### Installation à partir des sources
 
+> Lors de l'installation via une machine virtuelle, la première interface réseau doit être en mode __bridge__ ou __host_only__.
+
 #### Compatibilité
 
 > Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
