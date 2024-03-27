@@ -5,7 +5,7 @@ v1.3 (27/03/2024)
 ======
 
 + Changed
-  - Based on Debian 11
+  - Based on Debian 12
   - Installation from source is nox based on a automatic script
 
 + Fixed
