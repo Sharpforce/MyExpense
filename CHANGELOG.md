@@ -1,6 +1,16 @@
 MyExpense Application
 =======================
 
+v1.3 (27/03/2024)
+======
+
++ Changed
+  - Based on Debian 12
+  - Installation from source is nox based on a automatic script
+
++ Fixed
+  - Initialization of the database not possible when installing the application from the sources.
+
 v1.2 (21/05/2023)
 ======
 
