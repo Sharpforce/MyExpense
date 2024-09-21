@@ -1,11 +1,11 @@
 <?php
   // Database Configuration
   $_bdd = array();
-  $_bdd['server'] = "127.0.0.1";
-  $_bdd['port'] = "3306";
-  $_bdd['user'] = "MyExpenseUser";
-  $_bdd['password'] = "password";
-  $_bdd['database'] = "myexpense";
+  $_bdd['server'] = getenv('DB_SERVER') ?: '127.0.0.1';
+  $_bdd['port'] = getenv('DB_PORT') ?: '3306';
+  $_bdd['user'] = getenv('DB_USER') ?: 'MyExpenseUser';
+  $_bdd['password'] = getenv('DB_PASSWORD') ?: 'password';
+  $_bdd['database'] = getenv('DATABASE') ?: 'myexpense';
 
   function createOrRestoreDatabase() {
     global $_bdd;

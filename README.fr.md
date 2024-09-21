@@ -49,13 +49,27 @@ Il est plus simple de récupérer l'application en téléchargeant directement l
 
 > La machine est configurée en DHCP, retrouver son adresse IP fait partie du challenge (à partir de la version 1.2 l'adresse IP est affichée au démarrage de la box).
 
+### Docker
+
+```
+# docker-compose up -d
+```
+
+L'accès à l'application doit impérativement s'effectuer par _http://myexpense-web_. Pour cela il est donc nécessaire d'ajouter l'entrée suivante dans le fichier _/etc/hosts_ de la machine hôte : 
+
+```
+127.0.0.1 myexpense-web
+```
+
+> L'adresse IP peut être adaptée selon la configuration du système.
+
 ### Installation à partir des sources
 
 > Lors de l'installation via une machine virtuelle, la première interface réseau doit être en mode __bridge__ ou __host_only__.
 
 #### Compatibilité
 
-> Testé sur Virtualbox 7.0.12 / Debian 12 / Python3 / Google Chrome 123.0.6312.58
+> Testée sur Virtualbox 7.0.18 / Debian 12 (bookworm) / Python3 / Google Chrome 129.0.6668.58-1
 
 #### Installation de Git et récupération du code source
 
@@ -72,16 +86,15 @@ Il est possible d'installer l'utilitaire git afin de récupérer les sources de 
 # /bin/bash /tmp/MyExpense/install/install.sh
 ```
 
-L'installation se terminera par un redémarrage de la machine.
-
 #### Création de la base de données
 
 La configuration de l'application MyExpense doit être maintenant accessible via l'url _http://your-ip/config/setup.php_ :
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/main/img/d2a99cee077535dc955e87a1d8f8727e.png?raw=true)
 
 Vérifier les informations puis cliquer sur **Create/Restore the database** :
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+
+![](https://github.com/Sharpforce/MyExpense/blob/main/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
 
 L'installation est maintenant **complète**, l'application est disponible à l'adresse _http://ip_
 
@@ -89,4 +102,4 @@ L'installation est maintenant **complète**, l'application est disponible à l'a
 
 Il est possible de restaurer la base de données de l'application afin de pouvoir recommancer à partir de l'état initial. Pour cela il faut se rendre sur l'url _http://ip/config/setup.php_ puis de cliquer sur _Create/restore the database_. Un message indiquant que l'opération a été effectuée avec succès doit apparaître :
 
-![](https://github.com/Sharpforce/MyExpense/blob/master/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)
+![](https://github.com/Sharpforce/MyExpense/blob/main/img/4ae8ad29aadb188f855b952e1e21f588.png?raw=true)

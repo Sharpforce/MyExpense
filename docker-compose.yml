@@ -1,0 +1,69 @@
+services:
+  myexpense-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - 127.0.0.1:80:80
+    environment:
+      DB_SERVER: myexpense-db
+      DB_PORT: 3306
+      DB_USER: MyExpenseUser
+      DB_PASSWORD: password
+      DATABASE: myexpense
+    depends_on:
+      - myexpense-db
+    networks:
+      - myexpense-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      start_period: 10s
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  myexpense-scripts:
+    build:
+      context: .
+      dockerfile: Dockerfile.scripts
+    environment:
+      APP_URL: myexpense-web
+    depends_on:
+      - myexpense-web
+      - myexpense-db
+    networks:
+      - myexpense-network
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck-script.sh"]
+      start_period: 10s
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  myexpense-db:
+    image: mariadb:11.4.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myexpense
+      MYSQL_USER: MyExpenseUser
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - myexpense-network
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d/
+      - myexpense-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  myexpense-network:
+    driver: bridge
+
+volumes:
+  myexpense-data:

@@ -39,6 +39,9 @@ mv "$INSTALL_DIR/../install/login_scripts.sh" /opt/myexpense_scripts
 echo "Making login_scripts.sh executable..."
 chmod +x /opt/myexpense_scripts/login_scripts.sh
 
+# Make /opt writeable
+chmod -R 777 /opt
+
 # Move all contents of the current directory to /var/www/html/.
 INSTALL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
@@ -120,11 +123,20 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 
-# Enable myexpense scripts service.
-systemctl enable login_scripts.service
+SERVICE_NAME="login_scripts.service"
+echo "Enable scripts service..."
+systemctl daemon-reload
+systemctl enable $SERVICE_NAME
+systemctl restart $SERVICE_NAME
+
+if systemctl is-active --quiet $SERVICE_NAME; then
+    echo "The service $SERVICE_NAME is active."
+else
+    echo "The service $SERVICE_NAME is not active."
+fi
 
 # Inform the user that the installation process is complete.
 echo "Installation process completed."
 
-# Reboot
-reboot
+# Information message
+echo "For any questions or if you encounter any issues, feel free to contact me at sh4rpf0rc3<AT>gmail.com or via Twitter at https://twitter.com/Sh4rpF0rc3."

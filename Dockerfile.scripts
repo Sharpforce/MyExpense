@@ -1,0 +1,35 @@
+FROM alpine:3.18
+
+RUN apk update && apk add --no-cache \
+    xvfb \
+    libxi \
+    wget \
+    gnupg \
+    python3 \
+    py3-pip \
+    bash \
+    chromium \
+    chromium-chromedriver \
+    && rm -rf /var/cache/apk/*
+
+RUN pip3 install --no-cache-dir selenium webdriver-manager
+
+RUN adduser -D myexpense
+
+RUN mkdir -p /opt/myexpense_scripts
+COPY ./install/login_admin_script.py /opt/myexpense_scripts/
+COPY ./install/login_collab1_script.py /opt/myexpense_scripts/
+COPY ./install/login_collab2_script.py /opt/myexpense_scripts/
+COPY ./install/login_manager_script.py /opt/myexpense_scripts/
+RUN chmod -R 777 /opt
+
+COPY install/healthcheck-script.sh /usr/local/bin/ 
+
+USER myexpense
+
+ENTRYPOINT ["/bin/bash", "-c", "\
+    /usr/bin/python3 /opt/myexpense_scripts/login_collab1_script.py & \
+    /usr/bin/python3 /opt/myexpense_scripts/login_collab2_script.py & \
+    /usr/bin/python3 /opt/myexpense_scripts/login_manager_script.py & \
+    /usr/bin/python3 /opt/myexpense_scripts/login_admin_script.py & \
+    wait"]

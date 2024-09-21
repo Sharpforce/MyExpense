@@ -1,6 +1,12 @@
 MyExpense Application
 =======================
 
+v1.4 (22/09/2024)
+======
+
++ Fixed
+  - Issue during the exploitation of SQL injection.
+
 v1.3 (27/03/2024)
 ======
 
