@@ -5,7 +5,7 @@ v1.4 (22/09/2024)
 ======
 
 + Fixed
-  - Issue during the exploitation of SQL injection.
+  - Issue during the exploitation of the SQL injection
 
 v1.3 (27/03/2024)
 ======
@@ -15,7 +15,7 @@ v1.3 (27/03/2024)
   - Installation from source is nox based on a automatic script
 
 + Fixed
-  - Initialization of the database not possible when installing the application from the sources.
+  - Initialization of the database not possible when installing the application from the sources
 
 v1.2 (21/05/2023)
 ======
