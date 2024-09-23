@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile.web
     ports:
-      - 127.0.0.1:80:80 # Do not change this configuration
+      - 127.0.0.1:80:80 # Do not change the configuration of these ports
     environment:
       DB_SERVER: myexpense-db
       DB_PORT: 3306
