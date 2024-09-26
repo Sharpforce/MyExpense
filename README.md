@@ -56,7 +56,7 @@ Access to the application must be done via _http://myexpense-web_. Therefore, it
 
 > The IP address may be adjusted according to the system configuration.
 
-### Installation from source
+### From source
 
 > During installation via a virtual machine, the first network interface must be set to either bridge or host_only mode.
 

@@ -63,7 +63,7 @@ L'accès à l'application doit impérativement s'effectuer par _http://myexpense
 
 > L'adresse IP peut être adaptée selon la configuration du système.
 
-### Installation à partir des sources
+### A partir des sources
 
 > Lors de l'installation via une machine virtuelle, la première interface réseau doit être en mode __bridge__ ou __host_only__.
 
